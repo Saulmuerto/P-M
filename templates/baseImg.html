@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Add Material CSS, replace Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename ='static/material.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename ='static/BaseDimg.css') }}">
+    <link rel="stylesheet" href="static/BaseDimg.css">
+    <title> Registrar - Listar y Eliminar archivos de una carpeta usando Python + Flask</title>
+    <link type="text/css" rel="shortcut icon" href="{{ url_for('static', filename ='imgs/logo.png') }}"/>
+  </head>
+  <body>
+  
+    <div class="text-center mt-3">
+      <h1>Subir - Listar y Eliminar archivos (Imagenes) en nuestro servidor con:
+        <a href="/">
+          <img src="{{ url_for('static', filename ='imgs/flask.png') }}" class="rounded img_mini" alt="Python">
+          <img src="{{ url_for('static', filename ='imgs/logo.png') }}" class="rounded img_mini" alt="Python">
+        </a>
+        <hr>
+      </h1>
+    </div>
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+    <div class="col-md-3" style="padding:50px 50px;">
+      {% include 'form.html' %}
+    </div>
+
+    <div class="col-md-8" style="border-left: 1px solid #999; padding:50px 50px;">
+      {% set path = 'static/archivos/' %}
+      {% for foto in list_Photos %}
+        <div class="media">
+          <img src="{{ path }}{{ foto }}" class="mr-3" alt="{{ foto }}">
+          <div class="media-body">
+            <h5 class="mt-0">
+              <p>
+                <span class="index">{{loop.index}}</span>
+                <span class="namePhone">{{ foto }}</span>
+              </p>
+            </h5>
+            <p>
+              <a href="{{ url_for('EliminarFoto', nombreFoto = foto ) }}" type="button" class="btn btn-danger" style="margin-top: 40px;">Eliminar Archivo</a>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+</div>
+<br><br>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename ='js/material.min.js') }}">
+
+  </body>
+</html>
